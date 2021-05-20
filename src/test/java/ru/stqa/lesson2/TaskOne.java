@@ -17,7 +17,7 @@ public class TaskOne {
     }
 
     @Test
-    public void TaskOne() {
+    public void taskOne() {
         driver.get("https://software-testing.ru/");
     }
 
