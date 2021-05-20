@@ -18,7 +18,7 @@ public class TaskOne {
 
     @Test
     public void taskOne() {
-        driver.get("https://software-testing.ru/");
+        driver.navigate().to("https://software-testing.ru/");
     }
 
 
