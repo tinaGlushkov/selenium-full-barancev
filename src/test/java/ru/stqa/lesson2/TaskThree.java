@@ -1,5 +1,6 @@
 package ru.stqa.lesson2;
 
+import jdk.jfr.Timespan;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,8 +8,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.sql.PseudoColumnUsage;
+import java.io.File;
+
 
 public class TaskThree {
 
@@ -18,8 +24,19 @@ public class TaskThree {
     private By loginButton = By.xpath("//button[@name='login']");
 
     @Before
+    /*public void driverSetUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-fullscreen");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+    }*/
     public void driverSetUp() {
-        driver = new ChromeDriver();
+        //DesiredCapabilities caps = new DesiredCapabilities();
+        //caps.setCapability(FirefoxDriver.MARIONETTE, true);
+        FirefoxOptions options = new FirefoxOptions();
+        options.setBinary(new FirefoxBinary(new File("/home/kristinaglushkova/Documents/Nightly/firefox/firefox")));
+        driver = new FirefoxDriver(options);
+        //System.out.println(((HasCapabilities) driver).getCapabilities());
     }
 
     @Test
