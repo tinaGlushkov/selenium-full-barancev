@@ -25,9 +25,9 @@ public class BaseTest {
             return;
         }
         driver = new ChromeDriver();
-        driver.get(BASE_URL);
+        //driver.get(BASE_URL);
         wait = new WebDriverWait(driver, 30);
-        login();
+        //login();
 
         Runtime.getRuntime().addShutdownHook(
                 new Thread(() -> {driver.quit(); driver = null;})
