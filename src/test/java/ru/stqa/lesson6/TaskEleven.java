@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.lesson4.BaseTest;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,6 +22,7 @@ public class TaskEleven extends BaseTest {
     public void test1() {
 
         driver.get(SITE_URL);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.findElement(createAccountButton).click();
         driver.findElement(By.cssSelector("input[name=firstname]")).sendKeys("Kristina");
         driver.findElement(By.cssSelector("input[name=lastname]")).sendKeys("Glushkova");
