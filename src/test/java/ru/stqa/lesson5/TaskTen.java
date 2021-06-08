@@ -37,22 +37,22 @@ public class TaskTen extends BaseTest {
         String salePriceMain = salePriceElementMainPage.getAttribute("innerHTML");
         String colorOriginalMain = originalPriceElementMainPage.getCssValue("color");
         String colorSaleMain = salePriceElementMainPage.getCssValue("color");
-        Dimension sizeOriginalMain = originalPriceElementMainPage.getSize();
-        Dimension sizeSaleMain = salePriceElementMainPage.getSize();
+        String sizeOriginalMain = originalPriceElementMainPage.getCssValue("font-size");
+        String sizeSaleMain = salePriceElementMainPage.getCssValue("font-size");
         String fontOriginalMain = originalPriceElementMainPage.getCssValue("font-weight");
         String fontSaleMain = salePriceElementMainPage.getCssValue("font-weight");
 
         salePriceElementMainPage.click();
 
-        WebElement originalPriceElement = driver.findElement(By.cssSelector("#box-campaigns .regular-price"));
-        WebElement salePriceElement = driver.findElement(By.cssSelector("#box-campaigns .campaign-price"));
+        WebElement originalPriceElement = driver.findElement(By.cssSelector(".regular-price"));
+        WebElement salePriceElement = driver.findElement(By.cssSelector(".campaign-price"));
 
         String originalPrice = originalPriceElement.getAttribute("innerHTML");
         String salePrice = salePriceElement.getAttribute("innerHTML");
         String colorOriginal = originalPriceElement.getCssValue("color");
         String colorSale = salePriceElement.getCssValue("color");
-        Dimension sizeOriginal = originalPriceElement.getSize();
-        Dimension sizeSale = salePriceElement.getSize();
+        String sizeOriginal = originalPriceElement.getCssValue("font-size");
+        String sizeSale = salePriceElement.getCssValue("font-size");
         String fontOriginal = originalPriceElement.getCssValue("font-weight");
         String fontSale = salePriceElement.getCssValue("font-weight");
 
@@ -96,14 +96,11 @@ public class TaskTen extends BaseTest {
         return isRed;
     }
 
-    public double elementSize(Dimension d) {
-        return d.height * d.width;
-    }
-
-    public boolean salePriceSizeIsBigger(Dimension salePrice, Dimension originalPrice) {
+    public boolean salePriceSizeIsBigger(String salePrice, String originalPrice) {
         boolean salePriceSizeIsBigger = false;
-        double salePriceSize = salePrice.height * salePrice.width;
-        double originalPriceSize = originalPrice.width * originalPrice.height;
+
+        float salePriceSize = Float.parseFloat(salePrice.substring(0, salePrice.length()-2));
+        float originalPriceSize = Float.parseFloat(originalPrice.substring(0, originalPrice.length()-2));
         if(salePriceSize > originalPriceSize) {
             salePriceSizeIsBigger = true;
         }
