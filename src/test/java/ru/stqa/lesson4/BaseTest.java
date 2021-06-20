@@ -5,8 +5,14 @@ import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.logging.Level;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +30,11 @@ public class BaseTest {
         if(driver!=null){
             return;
         }
-        driver = new ChromeDriver();
+        DesiredCapabilities caps = new DesiredCapabilities();
+        LoggingPreferences logPrefs = new LoggingPreferences();
+        logPrefs.enable(LogType.BROWSER, Level.ALL);
+        caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+        driver = new ChromeDriver(caps);
         driver.get(BASE_URL);
         wait = new WebDriverWait(driver, 30);
         login();
