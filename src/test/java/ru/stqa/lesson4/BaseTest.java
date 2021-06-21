@@ -30,14 +30,14 @@ public class BaseTest {
         if(driver!=null){
             return;
         }
-        DesiredCapabilities caps = new DesiredCapabilities();
+       /* DesiredCapabilities caps = new DesiredCapabilities();
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
-        caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-        driver = new ChromeDriver(caps);
+        caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);*/
+        driver = new ChromeDriver();//caps);
         driver.get(BASE_URL);
         wait = new WebDriverWait(driver, 30);
-        login();
+        //login();
 
         Runtime.getRuntime().addShutdownHook(
                 new Thread(() -> {driver.quit(); driver = null;})
