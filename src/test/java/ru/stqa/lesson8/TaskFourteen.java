@@ -3,6 +3,7 @@ package ru.stqa.lesson8;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.stqa.lesson4.BaseTest;
 
 import java.util.List;
@@ -17,12 +18,14 @@ public class TaskFourteen extends BaseTest {
 
     @Test
     public void testLinks() {
+        login();
         driver.findElement(Countries).click();
         driver.findElement(addNewButton).click();
         List<WebElement> links = driver.findElements(link);
         for(WebElement el : links){
             String mainWindow = driver.getWindowHandle(); // get the main window id
             el.click();
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
             String newWindow = getNewWindowHandle(mainWindow);
             driver.switchTo().window(newWindow);
             System.out.println(driver.getTitle());
