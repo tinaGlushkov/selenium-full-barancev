@@ -2,6 +2,8 @@ package ru.stqa.lesson6;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.lesson4.BaseTest;
@@ -29,8 +31,11 @@ public class TaskEleven extends BaseTest {
         driver.findElement(By.cssSelector("input[name = address1]")).sendKeys("4300 Key str");
         driver.findElement(By.cssSelector("input[name = postcode]")).sendKeys("22222");
         driver.findElement(By.cssSelector("input[name = city]")).sendKeys("Arlington");
-        new Select(driver.findElement(By.cssSelector("select[name=country_code]"))).selectByValue("US");
-        new Select(driver.findElement(By.cssSelector("select[name=zone_code]"))).selectByValue("VA");
+
+        WebElement selectCountry = driver.findElement(By.cssSelector("select[name=country_code]"));
+        JavascriptExecutor je = (JavascriptExecutor)driver;
+        je.executeScript("arguments[0].selectedIndex = 224; arguments[0].dispatchEvent(new Event('change'))", selectCountry);
+
         login = emailGenerator();
         driver.findElement(By.cssSelector("input[name=email]")).sendKeys(login);
         driver.findElement(By.cssSelector("input[name=phone]")).sendKeys("4256330000");
